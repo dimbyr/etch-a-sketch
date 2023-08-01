@@ -1,4 +1,4 @@
-let size = 16;
+let size = 64;
 const grid = document.querySelector("#theGrid");
 
 for (let _=0; _<size; _++){
@@ -8,7 +8,8 @@ for (let _=0; _<size; _++){
     for(let i = 0; i<size; i++){
         const cell = document.createElement("div");
         cell.setAttribute("class", "cell");
-        cell.addEventListener("mouseover", (c) => c.target.style.backgroundColor = "black");
+        const randomColor = Math.floor(Math.random()*16777215).toString(16);
+        cell.addEventListener("mouseover", (c) => c.target.style.backgroundColor = "#"+randomColor);
         row.appendChild(cell);
     };
     grid.appendChild(row);
