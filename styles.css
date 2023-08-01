@@ -1,0 +1,21 @@
+body {
+    background-color: black;
+}
+
+.grid{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.cell {
+    background-color: white;
+    border: 0px solid white;
+    padding: 10px;
+}
