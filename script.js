@@ -1,10 +1,21 @@
 const sizer = document.querySelector("#sizer");
 const grid = document.querySelector("#theGrid");
 const slider = document.querySelector("#sizing")
+const whipe = document.querySelector("#whipe");
 
 let defaultSize = slider.value;
 
 load(defaultSize);
+
+whipe.addEventListener("click",
+        () => {
+        const lines = document.querySelectorAll(".row");
+                lines.forEach(
+                    (rw) => rw.remove()
+                );
+                load(defaultSize);
+             }
+    )
 
 slider.addEventListener("mouseup",
         () => {let newSize = Number(slider.value);
@@ -42,7 +53,7 @@ function load(s){
             const cell = document.createElement("div");
             cell.setAttribute("class", "cell");
             cell.style.padding = padd;
-            cell.addEventListener("mouseover", (c) => {
+            cell.addEventListener("mousemove", (c) => {
                 const randomColor = Math.floor(Math.random()*16777215).toString(16);
                 c.target.style.backgroundColor = "#"+randomColor; 
             }   
