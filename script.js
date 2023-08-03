@@ -1,22 +1,54 @@
-let size = 64;
+const sizer = document.querySelector("#sizer");
 const grid = document.querySelector("#theGrid");
+const slider = document.querySelector("#sizing")
 
-for (let _=0; _<size; _++){
-    const row = document.createElement('div');
-    row.setAttribute("class", "row");
+let defaultSize = slider.value;
 
-    for(let i = 0; i<size; i++){
-        const cell = document.createElement("div");
-        cell.setAttribute("class", "cell");
-        const randomColor = Math.floor(Math.random()*16777215).toString(16);
-        cell.addEventListener("mouseover", (c) => c.target.style.backgroundColor = "#"+randomColor);
-        row.appendChild(cell);
+load(defaultSize);
+
+slider.addEventListener("mouseup",
+        () => {let newSize = Number(slider.value);
+        if (newSize){
+        const lines = document.querySelectorAll(".row");
+                lines.forEach(
+                    (rw) => rw.remove()
+                );
+                load(newSize);
+             }
+            }
+    )
+
+
+sizer.addEventListener("click",
+        () => {let newSize = Number(prompt("Size of the square"));
+        if (newSize){
+        const lines = document.querySelectorAll(".row");
+                lines.forEach(
+                    (rw) => rw.remove()
+                );
+                load(newSize);
+             }
+            }
+    )
+
+
+
+function load(s){
+    const padd = 800/(2*s) + "px";
+    for (let _=0; _<s; _++){
+        const row = document.createElement('div');
+        row.setAttribute("class", "row");
+        for(let i = 0; i<s; i++){
+            const cell = document.createElement("div");
+            cell.setAttribute("class", "cell");
+            cell.style.padding = padd;
+            cell.addEventListener("mouseover", (c) => {
+                const randomColor = Math.floor(Math.random()*16777215).toString(16);
+                c.target.style.backgroundColor = "#"+randomColor; 
+            }   
+            );
+            row.appendChild(cell);
+        };
+        grid.appendChild(row);
     };
-    grid.appendChild(row);
 }
-
-// const cells = document.querySelectorAll(".cell");
-
-// cells.forEach(
-//     c => c.addEventListener("click", e => e.target.style['background-color'] = black)
-// )
