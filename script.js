@@ -7,15 +7,6 @@ let defaultSize = slider.value;
 
 load(defaultSize);
 
-whipe.addEventListener("click",
-        () => {
-        const lines = document.querySelectorAll(".row");
-                lines.forEach(
-                    (rw) => rw.remove()
-                );
-                load(defaultSize);
-             }
-    )
 
 slider.addEventListener("mouseup",
         () => {let newSize = Number(slider.value);
@@ -25,6 +16,7 @@ slider.addEventListener("mouseup",
                     (rw) => rw.remove()
                 );
                 load(newSize);
+                defaultSize = newSize;
              }
             }
     )
@@ -38,11 +30,23 @@ sizer.addEventListener("click",
                     (rw) => rw.remove()
                 );
                 load(newSize);
+                defaultSize = newSize;
+                slider.value = newSize;
              }
             }
     )
 
-
+whipe.addEventListener("click",
+    () => {
+    const lines = document.querySelectorAll(".row");
+            lines.forEach(
+                (rw) => rw.remove()
+            );
+            load(defaultSize);
+            slider.value = defaultSize;
+         }
+         
+);
 
 function load(s){
     const padd = 800/(2*s) + "px";
